@@ -19,8 +19,10 @@ message HelloResponse {
 }
 
 message ImageRequest {
-    bytes image = 1;
-    string filename = 2;
+    bytes activations = 1;
+    int32 height = 2;
+    int32 width = 3;
+    int32 channels = 4;
 }
 
 message ImageResponse {

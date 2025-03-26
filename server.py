@@ -6,20 +6,11 @@ from torchvision import models, transforms
 from PIL import Image
 import io
 import torch
+import numpy as np
+from resnet50_split1 import back_model
 
-model = models.resnet50(pretrained=True)
-
+model = back_model()
 model.eval()
-
-preprocess = transforms.Compose([
-    transforms.Resize(256),           
-    transforms.CenterCrop(224),       
-    transforms.ToTensor(),            # Convert to tensor (HWC -> CHW)
-    transforms.Normalize(             # Normalize with ImageNet mean and std
-        mean=[0.485, 0.456, 0.406],
-        std=[0.229, 0.224, 0.225]
-    )
-])
 
 with open("imagenet_classes.txt", "r") as f:
     imagenet_labels = [line.strip() for line in f.readlines()]
@@ -31,23 +22,14 @@ class GreeterServicer(greet_pb2_grpc.GreeterServicer):
     
     def SendImage(self, request, context):
         try:
-            img = request.image # this is in bytes format
-            fname = request.filename
-            print(f'file name: {fname}')
-        
-            filename = 'received.jpg'
-            with open(filename, "wb") as f:
-                f.write(img) # save the image in the server
-            
-            image = Image.open(io.BytesIO(img))
-            if image.mode != 'RGB':
-                image = image.convert('RGB')
-            
-            image_tensor = preprocess(image)  # Apply transforms
-            image_tensor = image_tensor.unsqueeze(0) # for adding batch dimension
+            activations = request.activations # this is in bytes format
+            height, width, channels = request.height, request.width, request.channels
+
+            activation_array = np.frombuffer(activations, dtype=np.float32)
+            activation_tensor = torch.from_numpy(activation_array).reshape(1, channels, height, width)
 
             with torch.no_grad():
-                output = model(image_tensor)
+                output = model(activation_tensor)
                 _, pred_idx = torch.max(output, 1)
                 pred = imagenet_labels[pred_idx]
             
