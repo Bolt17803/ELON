@@ -16,7 +16,7 @@ def client():
         response = stub.SayHello(greet_pb2.HelloRequest(name='Chaitanya Sai', message='Hi server! nice to connect with you.'))
         print(f"Server replied: {response.message}")
         response = stub.SendImage(img_request)
-        print(f"Server replied: {response.status}")
+        print(f"Server replied: {response.prediction}")
 
 if __name__=="__main__":
     client()

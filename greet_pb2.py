@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bgreet.proto\x12\x05greet\"-\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\" \n\rHelloResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\"/\n\x0cImageRequest\x12\r\n\x05image\x18\x01 \x01(\x0c\x12\x10\n\x08\x66ilename\x18\x02 \x01(\t\"\x1f\n\rImageResponse\x12\x0e\n\x06status\x18\x01 \x01(\t2|\n\x07Greeter\x12\x37\n\x08SayHello\x12\x13.greet.HelloRequest\x1a\x14.greet.HelloResponse\"\x00\x12\x38\n\tSendImage\x12\x13.greet.ImageRequest\x1a\x14.greet.ImageResponse\"\x00\x42\x12\n\x10\x63om.example.grpcb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bgreet.proto\x12\x05greet\"-\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\" \n\rHelloResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\"/\n\x0cImageRequest\x12\r\n\x05image\x18\x01 \x01(\x0c\x12\x10\n\x08\x66ilename\x18\x02 \x01(\t\"#\n\rImageResponse\x12\x12\n\nprediction\x18\x01 \x01(\t2|\n\x07Greeter\x12\x37\n\x08SayHello\x12\x13.greet.HelloRequest\x1a\x14.greet.HelloResponse\"\x00\x12\x38\n\tSendImage\x12\x13.greet.ImageRequest\x1a\x14.greet.ImageResponse\"\x00\x42\x12\n\x10\x63om.example.grpcb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -39,7 +39,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_IMAGEREQUEST']._serialized_start=103
   _globals['_IMAGEREQUEST']._serialized_end=150
   _globals['_IMAGERESPONSE']._serialized_start=152
-  _globals['_IMAGERESPONSE']._serialized_end=183
-  _globals['_GREETER']._serialized_start=185
-  _globals['_GREETER']._serialized_end=309
+  _globals['_IMAGERESPONSE']._serialized_end=187
+  _globals['_GREETER']._serialized_start=189
+  _globals['_GREETER']._serialized_end=313
 # @@protoc_insertion_point(module_scope)
