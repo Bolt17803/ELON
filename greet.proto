@@ -6,6 +6,7 @@ option java_package = "com.example.grpc";
 
 service Greeter {
     rpc SayHello (HelloRequest) returns (HelloResponse) {}
+    rpc SendImage (ImageRequest) returns (ImageResponse) {}
 }
 
 message HelloRequest {
@@ -15,4 +16,13 @@ message HelloRequest {
 
 message HelloResponse {
     string message=1;
+}
+
+message ImageRequest {
+    bytes image = 1;
+    string filename = 2;
+}
+
+message ImageResponse {
+    string status = 1;
 }
